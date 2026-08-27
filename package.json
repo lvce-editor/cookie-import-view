@@ -1,0 +1,33 @@
+{
+  "name": "@lvce-editor/cookie-import-view-monorepo",
+  "version": "0.0.0-dev",
+  "license": "MIT",
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "node packages/build/src/build.ts",
+    "build:static": "node packages/build/src/build-static.ts",
+    "build:watch": "npm exec --workspace=packages/build -- esbuild --format=esm --bundle --external:node:buffer --external:electron --external:ws --external:node:worker_threads --watch packages/cookie-import-view/src/cookieImportViewWorkerMain.ts --outfile=.tmp/dist/dist/cookieImportViewWorkerMain.js",
+    "dev": "node packages/build/src/dev.ts",
+    "e2e": "npm run e2e --workspace=packages/e2e",
+    "e2e:headless": "npm run e2e:headless --workspace=packages/e2e",
+    "format": "prettier --write .",
+    "lint": "eslint . && prettier --check . && knip --no-config-hints",
+    "test": "npm test --workspaces --if-present",
+    "type-check": "tsc -b"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 150
+  },
+  "devDependencies": {
+    "@lvce-editor/eslint-config": "^18.4.0",
+    "eslint": "^10.8.1",
+    "knip": "^6.29.0",
+    "prettier": "^3.9.6",
+    "typescript": "^6.0.3"
+  }
+}
