@@ -1,6 +1,7 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { mergeClassNames, text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
+import * as CookieImportViewStrings from '../CookieImportViewStrings/CookieImportViewStrings.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 
 // cspell:ignore soundcloud
@@ -65,7 +66,7 @@ const getSelectField = (id: string, label: string, value: string): readonly Virt
   text(value),
 ]
 
-const websiteField: readonly VirtualDomNode[] = [
+const getWebsiteField = (): readonly VirtualDomNode[] => [
   {
     childCount: 2,
     className: ClassNames.CookieImportViewField,
@@ -77,7 +78,7 @@ const websiteField: readonly VirtualDomNode[] = [
     htmlFor: 'CookieImportWebsite',
     type: VirtualDomElements.Label,
   },
-  text('Website'),
+  text(CookieImportViewStrings.website()),
   {
     childCount: 0,
     className: ClassNames.InputBox,
@@ -89,7 +90,7 @@ const websiteField: readonly VirtualDomNode[] = [
   },
 ]
 
-const actions: readonly VirtualDomNode[] = [
+const getActions = (): readonly VirtualDomNode[] => [
   {
     childCount: 2,
     className: ClassNames.CookieImportViewActions,
@@ -103,7 +104,7 @@ const actions: readonly VirtualDomNode[] = [
     onClick: DomEventListenerFunctions.HandleClick,
     type: VirtualDomElements.Button,
   },
-  text('Choose Firefox Profile…'),
+  text(CookieImportViewStrings.chooseFirefoxProfile()),
   {
     buttonType: 'button',
     childCount: 1,
@@ -112,19 +113,19 @@ const actions: readonly VirtualDomNode[] = [
     onClick: DomEventListenerFunctions.HandleClick,
     type: VirtualDomElements.Button,
   },
-  text('Import Cookies'),
+  text(CookieImportViewStrings.importCookies()),
 ]
 
 export const getCookieImportViewVirtualDom = (): readonly VirtualDomNode[] => [
   rootNode,
   headerNode,
   titleNode,
-  text('Import Firefox Cookies'),
+  text(CookieImportViewStrings.importFirefoxCookies()),
   descriptionNode,
-  text('Copy website sign-in cookies from a Firefox profile into Simple Browser.'),
+  text(CookieImportViewStrings.copyWebsiteSignInCookies()),
   formNode,
-  ...getSelectField('CookieImportBrowser', 'Browser', 'Firefox'),
-  ...getSelectField('CookieImportProfile', 'Firefox profile', 'Default profile'),
-  ...websiteField,
-  ...actions,
+  ...getSelectField('CookieImportBrowser', CookieImportViewStrings.browser(), CookieImportViewStrings.firefox()),
+  ...getSelectField('CookieImportProfile', CookieImportViewStrings.firefoxProfile(), CookieImportViewStrings.defaultProfile()),
+  ...getWebsiteField(),
+  ...getActions(),
 ]
