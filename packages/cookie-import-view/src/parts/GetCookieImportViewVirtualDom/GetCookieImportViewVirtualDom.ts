@@ -66,7 +66,7 @@ const getSelectField = (id: string, label: string, value: string): readonly Virt
   text(value),
 ]
 
-const getWebsiteField = (): readonly VirtualDomNode[] => [
+const websiteField: readonly VirtualDomNode[] = [
   {
     childCount: 2,
     className: ClassNames.CookieImportViewField,
@@ -90,7 +90,7 @@ const getWebsiteField = (): readonly VirtualDomNode[] => [
   },
 ]
 
-const getActions = (): readonly VirtualDomNode[] => [
+const actions: readonly VirtualDomNode[] = [
   {
     childCount: 2,
     className: ClassNames.CookieImportViewActions,
@@ -126,6 +126,6 @@ export const getCookieImportViewVirtualDom = (): readonly VirtualDomNode[] => [
   formNode,
   ...getSelectField('CookieImportBrowser', CookieImportViewStrings.browser(), CookieImportViewStrings.firefox()),
   ...getSelectField('CookieImportProfile', CookieImportViewStrings.firefoxProfile(), CookieImportViewStrings.defaultProfile()),
-  ...getWebsiteField(),
-  ...getActions(),
+  ...websiteField,
+  ...actions,
 ]
