@@ -22,9 +22,9 @@ afterEach(() => {
 })
 
 test('resolves platform-specific Firefox directories', () => {
-  expect(FirefoxCookieProfile.getFirefoxDataDirectoryForPlatform('win32', '/home/test', 'C:/Data')).toBe('C:/Data/Mozilla/Firefox')
-  expect(FirefoxCookieProfile.getFirefoxDataDirectoryForPlatform('win32', 'C:/Users/test', undefined)).toBe(
-    'C:/Users/test/AppData/Roaming/Mozilla/Firefox',
+  expect(FirefoxCookieProfile.getFirefoxDataDirectoryForPlatform('win32', 'C:\\Users\\test', 'C:\\Data')).toBe('C:\\Data\\Mozilla\\Firefox')
+  expect(FirefoxCookieProfile.getFirefoxDataDirectoryForPlatform('win32', 'C:\\Users\\test', undefined)).toBe(
+    'C:\\Users\\test\\AppData\\Roaming\\Mozilla\\Firefox',
   )
   expect(FirefoxCookieProfile.getFirefoxDataDirectoryForPlatform('darwin', '/Users/test', undefined)).toBe(
     '/Users/test/Library/Application Support/Firefox',
