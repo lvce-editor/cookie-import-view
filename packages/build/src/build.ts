@@ -21,7 +21,12 @@ delete packageJson.devDependencies
 delete packageJson.jest
 packageJson.version = await getVersion()
 packageJson.main = 'dist/cookieImportViewWorkerMain.js'
+packageJson.bin = {
+  'cookie-import-process': 'bin/cookieImportProcess.js',
+}
 
 await writeFile(join(dist, 'package.json'), `${JSON.stringify(packageJson, null, 2)}\n`)
+await mkdir(join(dist, 'bin'))
+await writeFile(join(dist, 'bin', 'cookieImportProcess.js'), "#!/usr/bin/env node\n\nimport '../dist/cookieImportProcessMain.js'\n")
 await cp(join(root, 'README.md'), join(dist, 'README.md'))
 await cp(join(root, 'LICENSE'), join(dist, 'LICENSE'))

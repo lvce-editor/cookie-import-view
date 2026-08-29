@@ -17,6 +17,10 @@
       "entry": ["test/**/*.test.ts"],
       "project": ["src/**/*.ts", "test/**/*.ts"]
     },
+    "packages/cookie-import-process": {
+      "entry": ["src/cookieImportProcessMain.ts", "test/**/*.test.ts"],
+      "project": ["src/**/*.ts", "test/**/*.ts"]
+    },
     "packages/server": {
       "project": ["src/**/*.js"]
     }

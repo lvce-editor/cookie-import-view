@@ -8,7 +8,7 @@ export const render2 = async (uid: number, _diffResult: readonly number[]): Prom
   CookieImportViewStates.set(uid, newState, newState)
   const commands: any[] = [[ViewletCommand.SetDom2, uid, getCookieImportViewVirtualDom()]]
   if (newState.announcementVersion !== oldState.announcementVersion) {
-    commands.push(['Viewlet.ariaAnnounce', 'Not implemented'])
+    commands.push(['Viewlet.ariaAnnounce', newState.announcement])
   }
   if (!RendererProcess.isConnected()) {
     return commands

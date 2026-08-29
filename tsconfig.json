@@ -3,6 +3,7 @@
   "include": [],
   "references": [
     { "path": "./packages/cookie-import-view" },
+    { "path": "./packages/cookie-import-process" },
     { "path": "./packages/build" },
     { "path": "./packages/server" },
     { "path": "./packages/e2e" }

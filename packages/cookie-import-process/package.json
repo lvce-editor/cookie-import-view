@@ -1,0 +1,52 @@
+{
+  "name": "@lvce-editor/cookie-import-process",
+  "version": "0.0.0-dev",
+  "description": "Node process for reading browser cookies",
+  "license": "MIT",
+  "author": "Lvce Editor",
+  "type": "module",
+  "main": "src/cookieImportProcessMain.ts",
+  "scripts": {
+    "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --detectOpenHandles --forceExit"
+  },
+  "jest": {
+    "injectGlobals": false,
+    "extensionsToTreatAsEsm": [
+      ".ts"
+    ],
+    "moduleNameMapper": {
+      "^(\\.{1,2}/.*)\\.js$": "$1"
+    },
+    "transform": {
+      "^.+\\.tsx?$": [
+        "ts-jest",
+        {
+          "useESM": true
+        }
+      ]
+    },
+    "testMatch": [
+      "**/test/**"
+    ],
+    "collectCoverage": true,
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80
+      }
+    }
+  },
+  "dependencies": {
+    "@lvce-editor/rpc": "^6.8.0"
+  },
+  "devDependencies": {
+    "@jest/globals": "^30.4.1",
+    "@types/node": "^22.20.1",
+    "jest": "^30.4.2",
+    "ts-jest": "^29.4.12"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}
