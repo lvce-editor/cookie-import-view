@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/prefer-readonly-parameter-types */
 import { existsSync, readFileSync } from 'node:fs'
 import { homedir } from 'node:os'
-import { isAbsolute, join } from 'node:path'
+import { isAbsolute, join, posix, win32 } from 'node:path'
 
 interface IniSection {
   readonly [key: string]: string
@@ -39,18 +39,19 @@ export const getFirefoxDataDirectoryForPlatform = (
   applicationDataDirectory: string | undefined,
   exists: typeof existsSync = existsSync,
 ): string => {
+  const platformPath = platform === 'win32' ? win32 : posix
   if (platform === 'win32') {
-    return join(applicationDataDirectory || join(homeDirectory, 'AppData', 'Roaming'), 'Mozilla', 'Firefox')
+    return platformPath.join(applicationDataDirectory || platformPath.join(homeDirectory, 'AppData', 'Roaming'), 'Mozilla', 'Firefox')
   }
   if (platform === 'darwin') {
-    return join(homeDirectory, 'Library', 'Application Support', 'Firefox')
+    return platformPath.join(homeDirectory, 'Library', 'Application Support', 'Firefox')
   }
   const candidates = [
-    join(homeDirectory, '.mozilla', 'firefox'),
-    join(homeDirectory, 'snap', 'firefox', 'common', '.mozilla', 'firefox'),
-    join(homeDirectory, '.var', 'app', 'org.mozilla.firefox', '.mozilla', 'firefox'),
+    platformPath.join(homeDirectory, '.mozilla', 'firefox'),
+    platformPath.join(homeDirectory, 'snap', 'firefox', 'common', '.mozilla', 'firefox'),
+    platformPath.join(homeDirectory, '.var', 'app', 'org.mozilla.firefox', '.mozilla', 'firefox'),
   ]
-  return candidates.find((candidate) => exists(join(candidate, 'profiles.ini'))) || candidates[0]
+  return candidates.find((candidate) => exists(platformPath.join(candidate, 'profiles.ini'))) || candidates[0]
 }
 
 export const getFirefoxDataDirectory = (): string => getFirefoxDataDirectoryForPlatform(process.platform, homedir(), process.env.APPDATA)
