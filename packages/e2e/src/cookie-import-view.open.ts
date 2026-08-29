@@ -10,6 +10,7 @@ export const test: Test = async ({ Command, expect, Locator }) => {
   const root = Locator('.CookieImportView')
   await expect(root).toBeVisible()
   await expect(root.locator('h1')).toHaveText('Import Firefox Cookies')
+  await expect(root.locator('.CookieImportViewBrowserIcon')).toBeVisible()
   await expect(root.locator('#CookieImportBrowser')).toHaveValue('Firefox')
   await expect(root.locator('#CookieImportProfile')).toHaveValue('Default profile')
   await expect(root.locator('#CookieImportWebsite')).toHaveAttribute('placeholder', 'soundcloud.com')
