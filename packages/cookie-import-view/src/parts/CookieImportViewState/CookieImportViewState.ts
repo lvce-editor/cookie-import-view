@@ -1,4 +1,5 @@
 export interface CookieImportViewState {
+  readonly announcement: string
   readonly announcementVersion: number
   readonly height: number
   readonly loaded: boolean

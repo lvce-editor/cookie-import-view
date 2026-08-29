@@ -3,6 +3,7 @@ import * as CookieImportViewStates from '../CookieImportViewStates/CookieImportV
 
 export const create = (uid: number, uri: string, x: number, y: number, width: number, height: number): void => {
   const state: CookieImportViewState = {
+    announcement: '',
     announcementVersion: 0,
     height,
     loaded: false,

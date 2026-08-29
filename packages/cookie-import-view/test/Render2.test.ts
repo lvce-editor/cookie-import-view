@@ -6,6 +6,7 @@ import { render2 } from '../src/parts/Render2/Render2.ts'
 import * as RendererProcess from '../src/parts/RendererProcess/RendererProcess.ts'
 
 const createState = (announcementVersion: number): CookieImportViewState => ({
+  announcement: 'Test announcement',
   announcementVersion,
   height: 600,
   loaded: true,
@@ -16,17 +17,17 @@ const createState = (announcementVersion: number): CookieImportViewState => ({
   y: 0,
 })
 
-test('announces that actions are not implemented', async () => {
+test('announces the latest action result', async () => {
   CookieImportViewStates.set(42, createState(0), createState(1))
   const commands = await render2(42, [1])
-  expect(commands).toContainEqual(['Viewlet.ariaAnnounce', 'Not implemented'])
+  expect(commands).toContainEqual(['Viewlet.ariaAnnounce', 'Test announcement'])
 })
 
 test('does not announce during a regular render', async () => {
   const state = createState(0)
   CookieImportViewStates.set(42, state, state)
   const commands = await render2(42, [1])
-  expect(commands).not.toContainEqual(['Viewlet.ariaAnnounce', 'Not implemented'])
+  expect(commands).not.toContainEqual(['Viewlet.ariaAnnounce', 'Test announcement'])
 })
 
 test('queues commands when connected to the renderer process', async () => {
@@ -46,5 +47,5 @@ test('queues commands when connected to the renderer process', async () => {
   expect(invocations).toHaveLength(1)
   expect(invocations[0][0]).toBe('Viewlet.queueCommands')
   expect(invocations[0][1]).toBe(42)
-  expect(invocations[0][2]).toContainEqual(['Viewlet.ariaAnnounce', 'Not implemented'])
+  expect(invocations[0][2]).toContainEqual(['Viewlet.ariaAnnounce', 'Test announcement'])
 })
