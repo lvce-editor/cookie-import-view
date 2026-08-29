@@ -3,6 +3,7 @@ import { mergeClassNames, text, VirtualDomElements } from '@lvce-editor/virtual-
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as CookieImportViewStrings from '../CookieImportViewStrings/CookieImportViewStrings.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
+import { getSelectField } from '../GetSelectField/GetSelectField.ts'
 
 // cspell:ignore soundcloud
 
@@ -30,41 +31,11 @@ const descriptionNode: VirtualDomNode = {
   type: VirtualDomElements.P,
 }
 
-const selectFieldNode: VirtualDomNode = {
-  childCount: 2,
-  className: ClassNames.CookieImportViewField,
-  type: VirtualDomElements.Div,
-}
-
 const formNode: VirtualDomNode = {
   childCount: 4,
   className: ClassNames.CookieImportViewForm,
   type: VirtualDomElements.Form,
 }
-
-const getSelectField = (id: string, label: string, value: string): readonly VirtualDomNode[] => [
-  selectFieldNode,
-  {
-    childCount: 1,
-    className: ClassNames.CookieImportViewLabel,
-    htmlFor: id,
-    type: VirtualDomElements.Label,
-  },
-  text(label),
-  {
-    childCount: 1,
-    className: ClassNames.SelectBox,
-    id,
-    name: id,
-    type: VirtualDomElements.Select,
-  },
-  {
-    childCount: 1,
-    type: VirtualDomElements.Option,
-    value,
-  },
-  text(value),
-]
 
 const websiteField: readonly VirtualDomNode[] = [
   {
