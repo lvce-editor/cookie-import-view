@@ -3,6 +3,7 @@ import { mergeClassNames, text, VirtualDomElements } from '@lvce-editor/virtual-
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as CookieImportViewStrings from '../CookieImportViewStrings/CookieImportViewStrings.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
+import { getFirefoxIconVirtualDom } from '../GetFirefoxIconVirtualDom/GetFirefoxIconVirtualDom.ts'
 import { getSelectField } from '../GetSelectField/GetSelectField.ts'
 
 // cspell:ignore soundcloud
@@ -95,7 +96,7 @@ export const getCookieImportViewVirtualDom = (): readonly VirtualDomNode[] => [
   descriptionNode,
   text(CookieImportViewStrings.copyWebsiteSignInCookies()),
   formNode,
-  ...getSelectField('CookieImportBrowser', CookieImportViewStrings.browser(), CookieImportViewStrings.firefox()),
+  ...getSelectField('CookieImportBrowser', CookieImportViewStrings.browser(), CookieImportViewStrings.firefox(), getFirefoxIconVirtualDom()),
   ...getSelectField('CookieImportProfile', CookieImportViewStrings.firefoxProfile(), CookieImportViewStrings.defaultProfile()),
   ...websiteField,
   ...actions,

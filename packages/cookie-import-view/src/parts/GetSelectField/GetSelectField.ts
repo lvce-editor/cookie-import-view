@@ -8,26 +8,30 @@ const selectFieldNode: VirtualDomNode = {
   type: VirtualDomElements.Div,
 }
 
-export const getSelectField = (id: string, label: string, value: string): readonly VirtualDomNode[] => [
-  selectFieldNode,
-  {
-    childCount: 1,
-    className: ClassNames.CookieImportViewLabel,
-    htmlFor: id,
-    type: VirtualDomElements.Label,
-  },
-  text(label),
-  {
-    childCount: 1,
-    className: ClassNames.SelectBox,
-    id,
-    name: id,
-    type: VirtualDomElements.Select,
-  },
-  {
-    childCount: 1,
-    type: VirtualDomElements.Option,
-    value,
-  },
-  text(value),
-]
+export const getSelectField = (id: string, label: string, value: string, icon: readonly VirtualDomNode[] = []): readonly VirtualDomNode[] => {
+  const hasIcon = icon.length > 0
+  return [
+    selectFieldNode,
+    {
+      childCount: hasIcon ? 2 : 1,
+      className: ClassNames.CookieImportViewLabel,
+      htmlFor: id,
+      type: VirtualDomElements.Label,
+    },
+    ...icon,
+    text(label),
+    {
+      childCount: 1,
+      className: ClassNames.SelectBox,
+      id,
+      name: id,
+      type: VirtualDomElements.Select,
+    },
+    {
+      childCount: 1,
+      type: VirtualDomElements.Option,
+      value,
+    },
+    text(value),
+  ]
+}
